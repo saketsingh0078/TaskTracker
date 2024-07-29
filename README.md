@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CreworkAssignment 
+LiveLink : https://crework-assignment-mu.vercel.app/
 
-## Getting Started
+This project includes a task management system with authentication features. Users can sign in and sign up, and manage their tasks using a dashboard with a sidebar and columns.
 
-First, run the development server:
+## Features
+- **Sign In / Sign Up:** 
+  - Sign in with email and password.
+  - ![Screenshot 2024-07-29 235404](https://github.com/user-attachments/assets/c42d2fdc-95d4-4d7f-9ccd-33d558719f4c)
+  - Sign up with full name, email, and password (passwords are encrypted before storing).
+  - ![Screenshot 2024-07-29 235340](https://github.com/user-attachments/assets/20c1d94e-d0f8-4ef7-8cb6-b80dcece9639)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Dashboard:**
+  - Sidebar displaying user name and logout button.
+  - Main area with four columns: To Do, In Progress, Under Review, and Finished.
+  - Each column has a button to add new tasks.
+  - Add tasks with title, description, status, priority, and deadline.
+  - Move tasks between columns.
+  - ![Screenshot 2024-07-29 235946](https://github.com/user-attachments/assets/3e9a4f12-b0f8-4fc5-98e2-9df58d74c97f)
+    
+- **Authentication:** 
+  - Uses NextAuth for secure authentication and access control.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Follow these steps to set up the project locally:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the Project:
+   git clone https://github.com/saketsingh0078/creworkAssignment/
 
-## Learn More
+2. Create Environment Variables:
+Create a .env file in the root directory.
+ MONGODB_URI=<your-mongodb-uri>
+ NEXTAUTH_SECRET=<your-nextauth-secret>
+ NEXTAUTH_URL=<your-nextauth-url>
 
-To learn more about Next.js, take a look at the following resources:
+3. Install Dependencies:
+   npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Run the Project:
+   npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Usage
+- Sign In / Sign Up: Use the provided forms to sign in or create a new account.
+- Dashboard: After logging in, you'll see the dashboard with four columns:
+- To Do: Add new tasks, view, and move them.
+- In Progress: Add new tasks, view, and move them.
+- Under Review: Add new tasks, view, and move them.
+- Finished: Add new tasks, view, and move them.
+- Adding Tasks: Click the add button in any column to create a new task. Enter the title, description, status, priority, and deadline.
