@@ -8,7 +8,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { updateTask } from "@/lib/actions/updateTask";
 import { useSession } from "next-auth/react";
-import { Loading } from "./Loading";
 
 const Dashboard = () => {
   const [visibleMenu, setVisibleMenu] = useState(false);
@@ -47,21 +46,21 @@ const Dashboard = () => {
   };
 
   const getData = async () => {
-    const res = await axios.get("http://localhost:3000/tasks");
+    const res = await axios.get("/tasks");
     setTasks(res.data.tasks);
     setLoading(false);
   };
 
   useEffect(() => {
     getData();
-  }, [tasks]);
+  }, []);
 
   useEffect(() => {
     getUser();
   }, []);
 
   const getUser = async () => {
-    const res = await axios.get("http://localhost:3000/user");
+    const res = await axios.get("/user");
     setUser(res.data.name);
   };
 

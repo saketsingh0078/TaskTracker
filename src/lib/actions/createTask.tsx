@@ -1,7 +1,6 @@
 "use server";
 
 import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
 import { authOptions } from "../authOptions";
 import dbConnect from "@/db/dbconnect";
 import Task from "@/model/Task";
