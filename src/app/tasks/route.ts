@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
   const userId = session.user.id;
 
   try {
-    const tasks = await Task.find({ user: "66a76b7b4dc9fcdba18fa1b8" });
+    const tasks = await Task.find({ user: userId });
     return NextResponse.json({ tasks }, { status: 200 });
   } catch (error) {
     console.error("Error fetching tasks:", error);

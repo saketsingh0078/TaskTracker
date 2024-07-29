@@ -64,7 +64,7 @@ const Dashboard = () => {
     setUser(res.data.name);
   };
 
-  if (session?.status == "unauthenticated") {
+  if (session.status == "unauthenticated") {
     router.push("/signin");
   }
 

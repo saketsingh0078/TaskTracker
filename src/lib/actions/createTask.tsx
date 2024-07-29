@@ -27,7 +27,6 @@ export async function createTask(
       user: session.user.id,
     });
 
-    // Convert the task to a plain object
     return { success: true, task: task.toObject() };
   } catch (error) {
     return { success: false, message: "Failed to create task" };
