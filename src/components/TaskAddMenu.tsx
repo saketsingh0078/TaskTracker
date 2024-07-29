@@ -24,7 +24,7 @@ export const TaskAddMenu = ({
 
   useEffect(() => {
     getData();
-  }, [getData]);
+  }, []);
 
   return (
     <div className="w-[622px] h-[100vh] pt-[16px] px-[27px] bg-[white]">

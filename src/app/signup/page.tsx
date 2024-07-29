@@ -7,3 +7,4 @@ export default function Logout() {
     </>
   );
 }
+Logout.displayName = "Logout";
