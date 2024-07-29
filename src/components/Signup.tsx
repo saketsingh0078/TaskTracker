@@ -81,7 +81,7 @@ export function Signup() {
             />
             <button
               type="button"
-              className="p-2 focus:outline-none shadow-md"
+              className="p-2 focus:outline-none "
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <VscEyeClosed /> : <VscEye />}
