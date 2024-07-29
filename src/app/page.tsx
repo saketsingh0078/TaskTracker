@@ -1,12 +1,11 @@
-"use client";
-import { authOptions } from "@/lib/authOptions";
-import { getServerSession } from "next-auth";
-import { useRouter } from "next/router";
+import { Signin } from "@/components/Signin";
 
 export default async function Home() {
-  const session: any = getServerSession(authOptions);
-  const router = useRouter();
-  console.log(session);
-
-  return <div></div>;
+  return (
+    <div>
+      <>
+        <Signin />
+      </>
+    </div>
+  );
 }
