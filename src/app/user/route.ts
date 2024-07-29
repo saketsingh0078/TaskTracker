@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs";
 
 export async function GET(req: NextRequest) {
   const session: any = await getServerSession(authOptions);
+  console.log("Session: ", session);
 
   if (!session || !session.user) {
     return NextResponse.json(
@@ -18,7 +19,7 @@ export async function GET(req: NextRequest) {
   await dbConnect();
 
   try {
-    const user = await User.findById(session.user.id).exec();
+    const user = await User.findById(session.user.id);
     return NextResponse.json(user, { status: 200 });
   } catch (error) {
     return NextResponse.json({ msg: "Failed to fetch users" }, { status: 500 });

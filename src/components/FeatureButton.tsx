@@ -5,9 +5,9 @@ import { CiFilter } from "react-icons/ci";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { IoAddCircleSharp } from "react-icons/io5";
 
-export const FeatureButton = () => {
+export const FeatureButton = ({ setVisibleMenu }: any) => {
   return (
-    <div className="flex h-[40px] items-center justify-between">
+    <div className="flex h-[40px] items-center justify-between mb-4">
       <div className=" flex items-center bg-white w-[196px] p-[8px] border-[1px] rounded-[8px] justify-between text-[#797979]">
         <input
           className="w-[140px] h-[19px] font-inter font-normal text-[16px] leading-[19.36px] outline-none"
@@ -48,7 +48,12 @@ export const FeatureButton = () => {
           className="flex items-center bg-[#4C38C2] rounded-[8px] 
         p-[8px] gap-[8px]"
         >
-          <button className="text-[#FFFFFF] font-[500] text-[16px] font-inter leading-[19.36px]">
+          <button
+            className="text-[#FFFFFF] font-[500] text-[16px] font-inter leading-[19.36px]"
+            onClick={() => {
+              setVisibleMenu(true);
+            }}
+          >
             Create new
           </button>
           <IoAddCircleSharp className="w-[24px] h-[24px] text-white" />

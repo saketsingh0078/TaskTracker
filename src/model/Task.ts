@@ -20,7 +20,10 @@ const TaskSchema: Schema = new Schema({
   status: {
     type: String,
     required: true,
-    enum: ["In Progress", "Under Review", "Completed"],
+  },
+  priority: {
+    type: String,
+    required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

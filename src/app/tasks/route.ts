@@ -1,12 +1,13 @@
 import dbConnect from "@/db/dbconnect";
 import { authOptions } from "@/lib/authOptions";
 import Task from "@/model/Task";
+import User from "@/model/User";
 import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const session: any = await getServerSession(authOptions);
-  const { id } = session.user.id;
 
   if (!session || !session.user || !session.user.id) {
     return NextResponse.json(
@@ -15,16 +16,15 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  await dbConnect();
+  const userId = session.user.id;
+
   try {
-    const tasks = await Task.find({ user: id });
-    return NextResponse.json(
-      { success: true, tasks, session },
-      { status: 200 }
-    );
+    const tasks = await Task.find({ user: userId });
+    return NextResponse.json({ tasks }, { status: 200 });
   } catch (error) {
+    console.error("Error fetching tasks:", error);
     return NextResponse.json(
-      { success: false, message: "Failed to fetch tasks" },
+      { success: false, message: "Failed to fetch tasks", session },
       { status: 500 }
     );
   }
@@ -40,7 +40,15 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  await dbConnect();
+  try {
+    await dbConnect();
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "Failed to connection  failed" },
+      { status: 400 }
+    );
+  }
+
   try {
     const { title, description, status } = await req.json();
     const task = await Task.create({
@@ -70,26 +78,27 @@ export async function PUT(req: NextRequest) {
 
   await dbConnect();
   try {
-    const { id, title, description, status } = await req.json();
+    const { id, title, description, status, priority } = await req.json();
 
     const updatedTask = await Task.findOneAndUpdate(
       { _id: id, user: session.user.id },
-      { title, description, status },
+      { title, description, status, priority },
       { new: true }
     );
+
     if (!updatedTask) {
       return NextResponse.json(
         { success: false, message: "Task not found" },
-        { status: 401 }
+        { status: 404 }
       );
     }
     return NextResponse.json(
       { success: true, data: updatedTask },
-      { status: 201 }
+      { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json(
-      { success: false, message: error },
+      { success: false, message: error.message },
       { status: 400 }
     );
   }

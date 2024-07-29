@@ -1,15 +1,54 @@
-import React from "react";
-import TodoTitle from "./TodoTitle";
+"use client";
+import React, { useEffect, useState } from "react";
+import TaskColumn from "./TaskColumn";
 
-export const Todo = () => {
+export const Todo = ({
+  setVisibleMenu,
+  setActiveTask,
+  onDrop,
+  tasks,
+  setStatus,
+  loading,
+}: any) => {
   return (
-    <div>
-      <div className="flex gap-[20px]">
-        <TodoTitle title="To do" />
-
-        <TodoTitle title="In Progress" />
-        <TodoTitle title="Under Review" />
-        <TodoTitle title="Finished" />
+    <div className=" bg-white h-fit p-2">
+      <div className="flex gap-[20px] ">
+        <TaskColumn
+          tasks={tasks}
+          status="To do"
+          setActiveTask={setActiveTask}
+          onDrop={onDrop}
+          setStatus={setStatus}
+          setVisibleMenu={setVisibleMenu}
+          loading={loading}
+        />
+        <TaskColumn
+          tasks={tasks}
+          status="In Progress"
+          setActiveTask={setActiveTask}
+          onDrop={onDrop}
+          setStatus={setStatus}
+          setVisibleMenu={setVisibleMenu}
+          loading={loading}
+        />
+        <TaskColumn
+          tasks={tasks}
+          status="Under Review"
+          setActiveTask={setActiveTask}
+          onDrop={onDrop}
+          setStatus={setStatus}
+          setVisibleMenu={setVisibleMenu}
+          loading={loading}
+        />
+        <TaskColumn
+          tasks={tasks}
+          status="Finished"
+          setActiveTask={setActiveTask}
+          onDrop={onDrop}
+          setStatus={setStatus}
+          setVisibleMenu={setVisibleMenu}
+          loading={loading}
+        />
       </div>
     </div>
   );

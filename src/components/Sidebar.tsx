@@ -1,3 +1,4 @@
+"use client";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { MdOutlineLightMode } from "react-icons/md";
 import { RxDoubleArrowRight } from "react-icons/rx";
@@ -7,14 +8,15 @@ import { CiSettings } from "react-icons/ci";
 import { GoPeople } from "react-icons/go";
 import { BsGraphUp } from "react-icons/bs";
 import { IoAddCircleSharp } from "react-icons/io5";
+import { signOut } from "next-auth/react";
 
-export const Sidebar = () => {
+export const Sidebar = ({ setVisibleMenu, user }: any) => {
   return (
     <div className="w-[285px] h-screen p-[16px] bg-[#FFFFFF]  ">
       <div className="w-[253px] h-[363px] ">
         <div className="flex  w-[253px] h-[31px] items-center mb-2">
-          <h1 className="border-2  px-2 py-0.5 mr-2">S</h1>
-          <h1>Saket</h1>
+          <h1 className="border-2  px-2 py-0.5 mr-2">{user.slice(0, 1)}</h1>
+          <h1>{user}</h1>
         </div>
         <div className="flex w-[253px] h-[40px] justify-between bg-white mb-2">
           <div className="flex w-[112px] pl-1 items-center gap-3">
@@ -22,7 +24,14 @@ export const Sidebar = () => {
             <MdOutlineLightMode className="w-[24px] h-[24px]" />
             <RxDoubleArrowRight className="w-[24px] h-[24px]" />
           </div>
-          <button className="px-3 bg-[#F4F4F4] rounded-[4px] text-[#797979]">
+          <button
+            className="px-3 bg-[#F4F4F4] rounded-[4px] text-[#797979] cursor-pointer hover:bg-[#cbcaca]"
+            onClick={() => {
+              signOut({
+                callbackUrl: "/signin",
+              });
+            }}
+          >
             Logout
           </button>
         </div>
@@ -49,7 +58,12 @@ export const Sidebar = () => {
             <h1 className="text-[#797979]">Analytics</h1>
           </div>
           <div className="h-[40px] flex items-center justify-center bg-[#4C38C2] gap-[8px] mt-2 rounded-[8px]">
-            <button className=" text-white px-[8px] py-[8px] font-inter text-[20px] font-medium ">
+            <button
+              className=" text-white px-[8px] py-[8px] font-inter text-[20px] font-medium "
+              onClick={() => {
+                setVisibleMenu(true);
+              }}
+            >
               Create new task
             </button>
             <IoAddCircleSharp className="w-[24px] h-[24px] text-white" />
